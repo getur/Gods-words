@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel="stylesheet" href="_style/style.css">
+    <title>God Words</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+</head>
+<body>
+
+
+    <div id="popup" class="conteiner__left">
+        <div>
+            <span id="close" class="icon close">
+                <i class="fi fi-rr-cross-small"></i>
+            </span>
+            <div class="left--text">
+                    <P class="left--verse">
+                    Jesus disse aos seus discipulos: “O administrador 
+                    de um homem rico foi acusado de estar desperdiçando os 
+                    seus bens
+                    </P>
+                    <span class="left--bookVerse">Lucas 16:9</span>
+            </div>
+            <div class="left--icons">
+                <span class="icon" href=""> 
+                    <i class="fi fi-rr-rotate-right"></i>
+                </span>
+                <span class="icon" href=""> 
+                    <i class="fi fi-rr-trash"></i>
+                </span>
+                <span class="icon" href=""> 
+                    <i class="fi fi-rr-copy"></i>
+                </span>
+                <span class="icon" href=""> 
+                    <i class="fi fi-rr-download"></i>
+                </span>
+                <span class="icon" href=""> 
+                    <i class="fi fi-rr-share"></i>
+                </span>
+
+            </div>
+
+        </div>
+    
+        <!-- <img src="_assets/img.jpg" alt="background image"> -->
+    </div>
+
+
+    <section class="conteiner--main">
+        <div class="conteiner__main--right">
+                <div class="right--text">
+                    <h2>Create new quote</h2>
+                    <span class="subtext">
+                    Click in button to create a new quote 
+                    </span>
+                </div>
+
+            
+                <div class="conteiner__content">
+                    <div id="card" class="right--verses">
+
+                        <li class="verse1">
+
+                        </li>
+
+                        <!-- <li class="verse">
+                            <span class="titleParagraph">Lucas 16:9</span>
+                            <p class="verseParagraph">
+                                Jesus disse aos seus descipulos: “O administrador 
+                                de um homem rico foi acusado de estar desperdiçando
+                                os seus bens
+                            </p>
+                        </li> -->
+                        <!-- #start - No verse yet conteiner -->
+                        <div id="noVerse" class="conteiner__noVerse">
+                            <img class="noVerse" src="_assets/Bibliophile-bro 1.png" alt="no verse yet image">
+                            <div class="txt__noVerse">
+                                <h2 class="noVerse">No verses yet</h2>
+                                <span class="subtext noVerse"> Generate one clicking in generate verse button</span>
+                            </div>
+                        </div>
+                        <!-- #start - No verse yet conteiner -->
+                    </div>
+                </div>
+                <div class="interation">
+                    <div class="right--btns">
+                        <button id="clearBtn" class="btn--secundary">
+                            Clear All
+                        </button>
+                        <button id="generateBtn" class="btn--primary">
+                            Generate verse
+                        </button>
+                        
+                    </div>
+                </div>
+                
+            
+        </div>
+
+    </section>
+    
+</body>
+<script src="main.js"></script>
+</html>
