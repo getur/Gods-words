@@ -32,11 +32,13 @@ span.subtext{
 span.titleParagraph{
     font-size: 18px;
     font-weight: 700;
+    pointer-events: none;
 }
 
 p.verseParagraph{
     font-size: 12px;
     font-weight: 200;
+    pointer-events: none;
 }
 
 /* styling main conteiner */
@@ -53,7 +55,7 @@ p.verseParagraph{
 
 /* styling left conteiner */
 .conteiner__left{
-    display: flex;
+    display: none;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -63,6 +65,8 @@ p.verseParagraph{
     justify-content: center;
     background-color: #005DFD;
     padding: 40px 20px;
+    z-index: 30;
+    transition: all 0.5s ease;
 }
 
 .conteiner__left img{
@@ -101,6 +105,7 @@ span.left--bookVerse{
     position: absolute;
     bottom: 40px;
     left: 60px;
+    
 
 }
 
@@ -114,6 +119,7 @@ span.icon{
     background-color: transparent;
     border-radius: 100%;
     margin-right:10px ;
+    transition: all 0.3s ease;
     
 }
 
@@ -147,12 +153,13 @@ span.icon:hover{
 }
 
 img.noVerse {
-    max-width: 400px;
+    max-width: 340px;
+    /* margin-top: -10px; */
+
 }
 
 .txt__noVerse{
     text-align: center;
-    margin-top: -50px;
 }
 
 /* styling right conteiner */
@@ -235,6 +242,12 @@ li.verse{
     color: #fff;
     padding: 12px 24px;
     cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.btn--primary:hover{
+    background-color: #005dfd8e;
+
 }
 
 .btn--secundary{    
@@ -246,11 +259,21 @@ li.verse{
     padding: 12px 24px;
     margin-right: 10px;
     cursor: pointer;
+    transition: all 0.3s ease; 
+}
+
+.btn--secundary:hover{  
+    background-color: #005dfd8e;
+    border: 1.5px solid transparent;
+    color: #fff;
+
 }
 
 @media screen and (max-width:670px){
     .conteiner__left{
         display: none;
+        width: 100vw;
+        height: 100vh;
     }
 
     .conteiner__main--right{
@@ -260,12 +283,23 @@ li.verse{
     .conteiner__noVerse {
         width: 80%;
     }
+
+    .left--icons{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        left: 0px;
+    }
+
+    /* span.icon{
+        color: #005DFD;
+        background-color: #fff;
+    } */
 }
 
 @media screen and (max-width:380px){
 
     .right--btns{
-
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -274,8 +308,7 @@ li.verse{
     }
 
     .btn--secundary{ 
-        margin: 0px 0px 5px 0px ;
-        
+        margin: 0px 0px 5px 0px ;  
     }
 
     .conteiner__content::-webkit-scrollbar{
