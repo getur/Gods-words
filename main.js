@@ -73,7 +73,6 @@ function clear_all (){
 
 
 // close function
-
 function closeM(){
     popUp.style.display = "none";
 }

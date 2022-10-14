@@ -165,7 +165,6 @@ img.noVerse {
 /* styling right conteiner */
 
 .conteiner__main--right{
-
     display: flex;
     flex-direction: column;
     padding: 40px 20px;
@@ -177,6 +176,7 @@ img.noVerse {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    align-items: center;
 }
 
 .conteiner__content{
@@ -222,6 +222,7 @@ li.verse{
     margin-bottom: 10px;
     color: #fff;
     background-color: #005DFD;
+
 }
 /* styling btn conteirner */
 
@@ -297,7 +298,20 @@ li.verse{
     } */
 }
 
-@media screen and (max-width:380px){
+@media screen and (max-width:420px){
+
+    .right--text{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .conteiner__noVerse{
+
+        display: flex;
+        justify-content: center;
+    }
 
     .right--btns{
         display: flex;
