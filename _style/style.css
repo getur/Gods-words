@@ -39,6 +39,10 @@ p.verseParagraph{
     font-size: 12px;
     font-weight: 200;
     pointer-events: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* styling main conteiner */
@@ -208,10 +212,12 @@ img.noVerse {
 
 
 li.verse{
+    display: block;
     border: 1.5px solid #005dfd8e;
     border-radius: 5px;
     padding: 10px 20px;
     margin-bottom: 10px;
+    max-width: 400px;
     /* background-color: #005DFD; */
 }
 
@@ -313,16 +319,30 @@ li.verse{
         justify-content: center;
     }
 
+    img.noVerse {
+        max-width: 300px;
+    }
+
     .right--btns{
         display: flex;
+        position: relative;
         flex-direction: column;
+        align-items: center;
         flex-wrap: wrap;
         margin-top: 20px;
-        width: 84%;
+        width: 100%;
+        bottom: 40px;
+        padding-top: 40px;
     }
 
     .btn--secundary{ 
+        width: 100%;
         margin: 0px 0px 5px 0px ;  
+    }
+
+    .btn--primary{ 
+        width: 100%;
+        /* margin: 0px 0px 5px 0px ;   */
     }
 
     .conteiner__content::-webkit-scrollbar{
