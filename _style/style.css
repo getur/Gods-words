@@ -38,11 +38,14 @@ span.titleParagraph{
 p.verseParagraph{
     font-size: 12px;
     font-weight: 200;
+    margin-top: 5px;
+    line-height: 1.5;
     pointer-events: none;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+   
 }
 
 /* styling main conteiner */
@@ -80,10 +83,8 @@ p.verseParagraph{
 }
 
 .left--text{
-
     display: flex;
     flex-direction: column;
-
 }
 
 p.left--verse{
@@ -91,6 +92,7 @@ p.left--verse{
     font-size: 25px;
     text-align: center;
     font-weight: 700;
+    line-height: 1.5;
 }
 
 span.left--bookVerse{
@@ -218,6 +220,7 @@ li.verse{
     padding: 10px 20px;
     margin-bottom: 10px;
     max-width: 400px;
+    min-width: 100%;
     /* background-color: #005DFD; */
 }
 
@@ -311,6 +314,10 @@ li.verse{
         flex-direction: column;
         justify-content: center;
         text-align: center;
+    }
+
+    li.verse{
+        
     }
 
     .conteiner__noVerse{

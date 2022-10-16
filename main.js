@@ -1,4 +1,4 @@
-const url = "https://www.abibliadigital.com.br/api/verses/nvi/sl/";
+const url = "https://www.abibliadigital.com.br/api/verses/nvi/random";
 const generateBtn = document.getElementById('generateBtn');
 const clearBtn = document.getElementById('clearBtn');
 const versesList = document.querySelector('.right--verses');
@@ -11,46 +11,45 @@ const verse = document.querySelectorAll('.verse')
 
 
 
-
-
 // events 
 generateBtn.addEventListener('click', generate_verse);
 clearBtn.addEventListener('click', clear_all);
 closeBtn.addEventListener('click', closeM);
 versesList.addEventListener('click', getVerse);
 
-let verseNum = 1;
-
 //Funcion generete verse
 function generate_verse() {
     // axios.get(url)
     noVerses.style.display ="none";
 
-    fetch(`${url}${verseNum}`)
+    fetch(`${url}`, { 
+        hearders: new Headers({
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlNhdCBPY3QgMTUgMjAyMiAwMTowODo0OCBHTVQrMDAwMC5nZXR1cmV1c2ViaW9AZ21haWwuY29tIiwiaWF0IjoxNjY1Nzk2MTI4fQ.qLbeYiQeSn-bO0w1m5yBNa-aJELm7-nrw-N_5dmqk7U'
+        })
+    })
     .then(response=> response.json())
     .then(data =>{
-        console.log(JSON.stringify(data.verses[1].text));
+        console.log(JSON.stringify(data.text));
+        // verses.push(data);
+        
+
         let html = " ";
         if(data){
             html+= `
-                <li data-id="${data.chapter.number}" class="verse verse1">
-                    <span class="titleParagraph"> ${data.book.name} ${data.chapter.number}:${data.verses[1].number} </span>
+                <li data-id="${data.chapter}" class="${data.book.abbrev.pt} ${data.number} verse verse1">
+                    <span class="titleParagraph"> ${data.book.name} ${data.chapter}:${data.number} </span>
                     <p class="verseParagraph">
-                        ${data.verses[1].text}
+                        ${data.text}
                     </p>
                 </li>
             `
+
         }
         noVerses.style.display = 'none';
         cards.innerHTML += html;
     })
     .catch(error=> console.log(error))
 
-    if(verseNum<38){
-        verseNum += 1;
-    } else{
-        verseNum = 1;
-    }
  }
 
 //  clear all functions
@@ -67,8 +66,6 @@ function clear_all (){
     cards.innerHTML = html;
     noVerses.style.display = "flex";
     closeM();
-    verseNum = 1;
-
 }
 
 
@@ -82,19 +79,26 @@ function getVerse(e){
     e.preventDefault();
      
      const item = e.target;
-     console.log(item.dataset.id);
 
-     fetch(`${url}${item.dataset.id}`)
+     let chap = item.dataset.id;
+     let number = item.classList[1];
+     let abb = item.classList[0];
+
+     fetch(`https://www.abibliadigital.com.br/api/verses/nvi/${abb}/${chap}/${number}`, { 
+        hearders: new Headers({
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlNhdCBPY3QgMTUgMjAyMiAwMTowODo0OCBHTVQrMDAwMC5nZXR1cmV1c2ViaW9AZ21haWwuY29tIiwiaWF0IjoxNjY1Nzk2MTI4fQ.qLbeYiQeSn-bO0w1m5yBNa-aJELm7-nrw-N_5dmqk7U'
+        })
+    })
     .then(response=> response.json())
     .then(data =>{
-        console.log(JSON.stringify(data.verses[1].text));
+        console.log(JSON.stringify(data.text));
         let html = " ";
         if(data){
             html += `
                     <P class="left--verse">
-                    ${data.verses[1].text}
+                    ${data.text}
                     </P>
-                    <span class="left--bookVerse">${data.book.name} ${data.chapter.number}:${data.verses[1].number}</span>
+                    <span class="left--bookVerse">${data.book.name} ${data.chapter}:${data.number}</span>
             `;
         }
         modalText.innerHTML = html;
@@ -102,9 +106,11 @@ function getVerse(e){
     })
     .catch(error=> console.log(error))
      
-
-
 }
+
+
+//copy to cliboard
+
 
 
 
