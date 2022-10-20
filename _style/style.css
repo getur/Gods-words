@@ -125,8 +125,12 @@ span.icon{
     background-color: transparent;
     border-radius: 100%;
     margin-right:10px ;
-    transition: all 0.3s ease;
-    
+    transition: all 0.3s ease; 
+    cursor: pointer;
+}
+
+i.fi{
+    pointer-events:none;
 }
 
 span.icon:hover{
@@ -225,11 +229,13 @@ li.verse{
 }
 
 .activeVerse {
-    /* border: 1.5px solid #005dfd8e; */
+    border: 1.5px solid transparent;
     border-radius: 5px;
     padding: 10px 20px;
     margin-bottom: 10px;
     color: #fff;
+    max-width: 400px;
+    min-width: 100%;
     background-color: #005DFD;
 
 }
@@ -316,9 +322,6 @@ li.verse{
         text-align: center;
     }
 
-    li.verse{
-        
-    }
 
     .conteiner__noVerse{
 

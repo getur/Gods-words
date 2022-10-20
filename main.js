@@ -1,3 +1,9 @@
+// importing dom to
+// import domtoimage from 'dom-to-image';
+// var domtoimage = require('dom-to-image');
+
+
+
 const url = "https://www.abibliadigital.com.br/api/verses/nvi/random";
 const generateBtn = document.getElementById('generateBtn');
 const clearBtn = document.getElementById('clearBtn');
@@ -7,7 +13,10 @@ const noVerses = document.getElementById('noVerse');
 const closeBtn = document.getElementById('close');
 const popUp = document.getElementById('popup');
 const modalText = document.querySelector('.left--text');
-const verse = document.querySelectorAll('.verse')
+const verse = document.querySelectorAll('.verse');
+const iconsF = document.querySelector('.left--icons'); 
+const canvas = document.querySelector('.conteiner__left')
+var item = "";
 
 
 
@@ -16,6 +25,7 @@ generateBtn.addEventListener('click', generate_verse);
 clearBtn.addEventListener('click', clear_all);
 closeBtn.addEventListener('click', closeM);
 versesList.addEventListener('click', getVerse);
+iconsF.addEventListener('click', functionalities);
 
 //Funcion generete verse
 function generate_verse() {
@@ -49,8 +59,9 @@ function generate_verse() {
         cards.innerHTML += html;
     })
     .catch(error=> console.log(error))
-
  }
+
+
 
 //  clear all functions
 function clear_all (){
@@ -66,11 +77,15 @@ function clear_all (){
     cards.innerHTML = html;
     noVerses.style.display = "flex";
     closeM();
-}
+} 
 
 
 // close function
 function closeM(){
+    selected = cards.querySelectorAll('.verse');
+     selected.forEach(element => {
+        element.classList.remove('activeVerse');
+     });
     popUp.style.display = "none";
 }
 
@@ -78,11 +93,21 @@ function closeM(){
 function getVerse(e){
     e.preventDefault();
      
-     const item = e.target;
+     item = e.target;
 
      let chap = item.dataset.id;
      let number = item.classList[1];
      let abb = item.classList[0];
+
+    //  removing and adding activeVerse class
+     selected = cards.querySelectorAll('.verse');
+     selected.forEach(element => {
+        element.classList.remove('activeVerse');
+     });
+
+     
+     item.classList.add('activeVerse');
+
 
      fetch(`https://www.abibliadigital.com.br/api/verses/nvi/${abb}/${chap}/${number}`, { 
         hearders: new Headers({
@@ -109,7 +134,104 @@ function getVerse(e){
 }
 
 
-//copy to cliboard
+//verse funtionanalities 
+
+function functionalities(e, cards){
+    e.preventDefault();
+    const icon = e.target;
+    const iconClass = icon.classList[1];
+
+    // console.log(iconClass);
+    // console.log(cards);
+
+    switch (iconClass) {
+        case "reload": 
+            deleteVerse();
+            break;
+        case "delete": 
+            deleteVerse();
+            break;
+        case "copy": 
+            copyVerse();
+            break;
+        case "download": 
+            downloadVerse();
+            break;
+        case "share": 
+            shareVerse();
+            break;
+    
+        default:
+            break;
+    }
+}
+
+
+function copyVerse(){
+    const verseText = document.querySelector('.left--verse');
+    const bookVerse = document.querySelector('.left--bookVerse');
+
+    const copy = document.createElement("div");
+    copy.classList.add('copiedText');
+    copy.style.display = 'none';
+    copy.innerHTML = `${verseText.textContent} - ${bookVerse.textContent}`;
+    verseText.appendChild(copy); 
+    const copyed = document.querySelector('.copiedText');
+
+    console.log(copyed.textContent);
+
+    var r = document.createRange();
+    r.selectNode(copyed);
+    r.selectNode(copyed);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(r);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    copy.remove();
+}
+
+function deleteVerse(versesList) {
+    item.remove();
+    closeM();
+}
+
+function downloadVerse(){
+
+    domtoimage.toPng(canvas)
+    .then(function (dataUrl) {
+        var img=new Image();
+        var link = document.createElement('a');
+        img.src=dataUrl;
+        link.download = 'verse.jpeg';
+        link.href = dataUrl;
+        link.click();
+    });
+}
+
+
+async function shareVerse(){
+
+    const shareData = {
+        // Files;
+        title: 'Test',
+        text: ``,
+      }
+
+      const share = async () => {
+        try {
+          await navigator.share(shareData);
+          console.log(shareData);
+        } catch (err) {
+          console.log(`Error: ${err}`);
+        }
+      };
+
+      share();
+}
+
+
+
+
 
 
 
